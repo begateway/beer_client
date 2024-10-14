@@ -56,7 +56,8 @@ RSpec.describe Beer::Client do
         {
           code: 'E.1000',
           message: 'Not Found',
-          friendly_message: 'Not Found'
+          friendly_message: 'Not Found',
+          error_message: 'Details: Not Found'
         }.to_json
       end
 
@@ -66,6 +67,7 @@ RSpec.describe Beer::Client do
         expect(response.id).to eq(nil)
         expect(response.successful?).to eq(false)
         expect(response.message).to eq('Not Found')
+        expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
       end
     end
@@ -104,7 +106,8 @@ RSpec.describe Beer::Client do
         {
           code: 'E.1000',
           message: 'Not Found',
-          friendly_message: 'Not Found'
+          friendly_message: 'Not Found',
+          error_message: 'Details: Not Found'
         }.to_json
       end
 
@@ -114,6 +117,7 @@ RSpec.describe Beer::Client do
         expect(response.id).to eq(nil)
         expect(response.successful?).to eq(false)
         expect(response.message).to eq('Not Found')
+        expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
       end
     end
@@ -152,7 +156,8 @@ RSpec.describe Beer::Client do
         {
           code: 'E.1000',
           message: 'Not Found',
-          friendly_message: 'Not Found'
+          friendly_message: 'Not Found',
+          error_message: 'Details: Not Found'
         }.to_json
       end
 
@@ -162,6 +167,7 @@ RSpec.describe Beer::Client do
         expect(response.id).to eq(nil)
         expect(response.successful?).to eq(false)
         expect(response.message).to eq('Not Found')
+        expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
       end
     end
@@ -200,7 +206,8 @@ RSpec.describe Beer::Client do
         {
           code: 'E.1000',
           message: 'Not Found',
-          friendly_message: 'Not Found'
+          friendly_message: 'Not Found',
+          error_message: 'Details: Not Found'
         }.to_json
       end
 
@@ -210,6 +217,7 @@ RSpec.describe Beer::Client do
         expect(response.id).to eq(nil)
         expect(response.successful?).to eq(false)
         expect(response.message).to eq('Not Found')
+        expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
       end
     end
@@ -238,7 +246,8 @@ RSpec.describe Beer::Client do
         {
           code: 'E.1000',
           message: 'Not Found',
-          friendly_message: 'Not Found'
+          friendly_message: 'Not Found',
+          error_message: 'Details: Not Found'
         }.to_json
       end
 
@@ -248,6 +257,7 @@ RSpec.describe Beer::Client do
         expect(response.id).to eq(nil)
         expect(response.successful?).to eq(false)
         expect(response.message).to eq('Not Found')
+        expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
       end
     end
@@ -294,7 +304,8 @@ RSpec.describe Beer::Client do
         {
           code: 'E.1000',
           message: 'Not Found',
-          friendly_message: 'Not Found'
+          friendly_message: 'Not Found',
+          error_message: 'Details: Not Found'
         }.to_json
       end
 
@@ -304,6 +315,7 @@ RSpec.describe Beer::Client do
         expect(response.id).to eq(nil)
         expect(response.successful?).to eq(false)
         expect(response.message).to eq('Not Found')
+        expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
       end
     end
@@ -346,7 +358,8 @@ RSpec.describe Beer::Client do
         {
           code: 'E.1000',
           message: 'Not Found',
-          friendly_message: 'Not Found'
+          friendly_message: 'Not Found',
+          error_message: 'Details: Not Found'
         }.to_json
       end
 
@@ -356,6 +369,7 @@ RSpec.describe Beer::Client do
         expect(response.id).to eq(nil)
         expect(response.successful?).to eq(false)
         expect(response.message).to eq('Not Found')
+        expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
       end
     end
@@ -400,7 +414,8 @@ RSpec.describe Beer::Client do
         {
           code: 'E.1000',
           message: 'Not Found',
-          friendly_message: 'Not Found'
+          friendly_message: 'Not Found',
+          error_message: 'Details: Not Found'
         }.to_json
       end
 
@@ -410,6 +425,7 @@ RSpec.describe Beer::Client do
         expect(response.id).to eq(nil)
         expect(response.successful?).to eq(false)
         expect(response.message).to eq('Not Found')
+        expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
       end
     end

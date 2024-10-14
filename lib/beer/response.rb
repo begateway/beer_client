@@ -21,12 +21,12 @@ module Beer
         "[Beer::Client] Failed with error: #{@error.message}"
       end
 
-      def errors
-        message
+      def error_message
+        params['error_message'].presence || message
       end
 
       def params
-        { 'code' => 'E.1000', 'message' => message, 'errors' => errors }
+        { 'code' => 'E.1000', 'message' => message, 'error_message' => error_message }
       end
 
       def http_code
@@ -65,9 +65,8 @@ module Beer
         (successful? ? 'Successful executed' : 'Executed with error')
     end
 
-    # TODO: [BEP-17368] Maybe add "errors" params in BeER response
-    def errors
-      message if successful?
+    def error_message
+      params['error_message'].presence
     end
 
     def http_code
