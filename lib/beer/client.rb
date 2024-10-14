@@ -79,7 +79,7 @@ module Beer
         c.options[:proxy] = proxy if proxy
         c.request :json
 
-        c.headers = {'Content-Type' => 'application/json'}.update(opts[:headers].to_h)
+        c.headers = {'Content-Type' => 'application/json'}.update(headers.to_h)
 
         c.basic_auth(BASIC_AUTH_LOGIN, secret_key)
         c.adapter Faraday.default_adapter
