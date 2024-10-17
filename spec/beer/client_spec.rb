@@ -42,9 +42,9 @@ RSpec.describe Beer::Client do
 
       it 'returns a list of sources' do
         response = subject
-        expect(response.params).to eq(JSON.parse(body))
+        expect(response.data).to eq(JSON.parse(body))
         expect(response.id).to eq(nil)
-        expect(response.successful?).to eq(true)
+        expect(response.success?).to eq(true)
         expect(response.message).to eq('Successful executed')
         expect(response.http_code).to eq('200')
       end
@@ -63,9 +63,9 @@ RSpec.describe Beer::Client do
 
       it 'returns error' do
         response = subject
-        expect(subject.params).to eq(JSON.parse(body))
+        expect(subject.data).to eq(JSON.parse(body))
         expect(response.id).to eq(nil)
-        expect(response.successful?).to eq(false)
+        expect(response.success?).to eq(false)
         expect(response.message).to eq('Not Found')
         expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
@@ -92,9 +92,9 @@ RSpec.describe Beer::Client do
 
       it 'returns a list of sources' do
         response = subject
-        expect(response.params).to eq(JSON.parse(body))
+        expect(response.data).to eq(JSON.parse(body))
         expect(response.id).to eq(1)
-        expect(response.successful?).to eq(true)
+        expect(response.success?).to eq(true)
         expect(response.message).to eq('Successful executed')
         expect(response.http_code).to eq('200')
       end
@@ -113,9 +113,9 @@ RSpec.describe Beer::Client do
 
       it 'returns error' do
         response = subject
-        expect(subject.params).to eq(JSON.parse(body))
+        expect(subject.data).to eq(JSON.parse(body))
         expect(response.id).to eq(nil)
-        expect(response.successful?).to eq(false)
+        expect(response.success?).to eq(false)
         expect(response.message).to eq('Not Found')
         expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
@@ -142,9 +142,9 @@ RSpec.describe Beer::Client do
 
       it 'returns a list of sources' do
         response = subject
-        expect(response.params).to eq(JSON.parse(body))
+        expect(response.data).to eq(JSON.parse(body))
         expect(response.id).to eq(1)
-        expect(response.successful?).to eq(true)
+        expect(response.success?).to eq(true)
         expect(response.message).to eq('Successful executed')
         expect(response.http_code).to eq('200')
       end
@@ -163,9 +163,9 @@ RSpec.describe Beer::Client do
 
       it 'returns error' do
         response = subject
-        expect(subject.params).to eq(JSON.parse(body))
+        expect(subject.data).to eq(JSON.parse(body))
         expect(response.id).to eq(nil)
-        expect(response.successful?).to eq(false)
+        expect(response.success?).to eq(false)
         expect(response.message).to eq('Not Found')
         expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
@@ -192,9 +192,9 @@ RSpec.describe Beer::Client do
 
       it 'returns a list of sources' do
         response = subject
-        expect(response.params).to eq(JSON.parse(body))
+        expect(response.data).to eq(JSON.parse(body))
         expect(response.id).to eq(1)
-        expect(response.successful?).to eq(true)
+        expect(response.success?).to eq(true)
         expect(response.message).to eq('Successful executed')
         expect(response.http_code).to eq('200')
       end
@@ -213,9 +213,9 @@ RSpec.describe Beer::Client do
 
       it 'returns error' do
         response = subject
-        expect(subject.params).to eq(JSON.parse(body))
+        expect(subject.data).to eq(JSON.parse(body))
         expect(response.id).to eq(nil)
-        expect(response.successful?).to eq(false)
+        expect(response.success?).to eq(false)
         expect(response.message).to eq('Not Found')
         expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
@@ -232,9 +232,9 @@ RSpec.describe Beer::Client do
 
       it 'returns a list of sources' do
         response = subject
-        expect(response.params).to eq({})
+        expect(response.data).to eq({})
         expect(response.id).to eq(nil)
-        expect(response.successful?).to eq(true)
+        expect(response.success?).to eq(true)
         expect(response.message).to eq('Successful executed')
         expect(response.http_code).to eq('204')
       end
@@ -253,9 +253,9 @@ RSpec.describe Beer::Client do
 
       it 'returns error' do
         response = subject
-        expect(subject.params).to eq(JSON.parse(body))
+        expect(subject.data).to eq(JSON.parse(body))
         expect(response.id).to eq(nil)
-        expect(response.successful?).to eq(false)
+        expect(response.success?).to eq(false)
         expect(response.message).to eq('Not Found')
         expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
@@ -290,9 +290,9 @@ RSpec.describe Beer::Client do
 
       it 'returns a list of sources' do
         response = subject
-        expect(response.params).to eq(JSON.parse(body))
+        expect(response.data).to eq(JSON.parse(body))
         expect(response.id).to eq(nil)
-        expect(response.successful?).to eq(true)
+        expect(response.success?).to eq(true)
         expect(response.message).to eq('Successfully received exchange rates')
         expect(response.http_code).to eq('200')
       end
@@ -311,9 +311,9 @@ RSpec.describe Beer::Client do
 
       it 'returns error' do
         response = subject
-        expect(subject.params).to eq(JSON.parse(body))
+        expect(subject.data).to eq(JSON.parse(body))
         expect(response.id).to eq(nil)
-        expect(response.successful?).to eq(false)
+        expect(response.success?).to eq(false)
         expect(response.message).to eq('Not Found')
         expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
@@ -344,9 +344,9 @@ RSpec.describe Beer::Client do
 
       it 'returns a list of sources' do
         response = subject
-        expect(response.params).to eq(JSON.parse(body))
+        expect(response.data).to eq(JSON.parse(body))
         expect(response.id).to eq(nil)
-        expect(response.successful?).to eq(true)
+        expect(response.success?).to eq(true)
         expect(response.message).to eq('Successfully received exchange rates')
         expect(response.http_code).to eq('200')
       end
@@ -365,9 +365,9 @@ RSpec.describe Beer::Client do
 
       it 'returns error' do
         response = subject
-        expect(subject.params).to eq(JSON.parse(body))
+        expect(subject.data).to eq(JSON.parse(body))
         expect(response.id).to eq(nil)
-        expect(response.successful?).to eq(false)
+        expect(response.success?).to eq(false)
         expect(response.message).to eq('Not Found')
         expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
@@ -400,9 +400,9 @@ RSpec.describe Beer::Client do
 
       it 'returns a list of sources' do
         response = subject
-        expect(response.params).to eq(JSON.parse(body))
+        expect(response.data).to eq(JSON.parse(body))
         expect(response.id).to eq(nil)
-        expect(response.successful?).to eq(true)
+        expect(response.success?).to eq(true)
         expect(response.message).to eq('Successfully received exchange rates')
         expect(response.http_code).to eq('200')
       end
@@ -421,9 +421,9 @@ RSpec.describe Beer::Client do
 
       it 'returns error' do
         response = subject
-        expect(subject.params).to eq(JSON.parse(body))
+        expect(subject.data).to eq(JSON.parse(body))
         expect(response.id).to eq(nil)
-        expect(response.successful?).to eq(false)
+        expect(response.success?).to eq(false)
         expect(response.message).to eq('Not Found')
         expect(response.error_message).to eq('Details: Not Found')
         expect(response.http_code).to eq('404')
@@ -481,7 +481,7 @@ RSpec.describe Beer::Client do
         response = client.get_all_source
 
         expect(response.id).to eq(nil)
-        expect(response.successful?).to eq(false)
+        expect(response.success?).to eq(false)
         expect(response.message).to eq('Unknown error: Contact the payment service provider for details.')
         expect(response.error_message).to eq('Failed to complete Beer Client request. Error message: Net::ReadTimeout with "Exception from WebMock"')
         expect(response.http_code).to eq('500')
