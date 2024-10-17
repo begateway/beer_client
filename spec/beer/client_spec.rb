@@ -478,8 +478,15 @@ RSpec.describe Beer::Client do
       end
 
       it 'returns error response' do
+        response = client.get_all_source
+
+        expect(response.id).to eq(nil)
+        expect(response.successful?).to eq(false)
+        expect(response.message).to eq('Unknown error: Contact the payment service provider for details.')
+        expect(response.error_message).to eq('Failed to complete Beer Client request. Error message: Net::ReadTimeout with "Exception from WebMock"')
+        expect(response.http_code).to eq('500')
         expect {
-          expect(client.get_all_source).to be_kind_of(Beer::Response::Error)
+          expect(response).to be_kind_of(Beer::Response)
         }.not_to raise_exception
       end
     end

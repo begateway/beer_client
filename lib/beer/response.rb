@@ -4,42 +4,12 @@ module Beer
   class Response
     SUCCESSFUL_BEER_RESPONSE_CODE = 'S.0000'.freeze
 
-    class Error
-      def initialize(error)
-        @error = error
-      end
+    attr_reader :http_code, :params
 
-      def id
-        nil
-      end
-
-      def successful?
-        false
-      end
-
-      def message
-        "[Beer::Client] Failed with error: #{@error.message}"
-      end
-
-      def error_message
-        params['error_message'].presence || message
-      end
-
-      def params
-        { 'code' => 'E.1000', 'message' => message, 'error_message' => error_message }
-      end
-
-      def http_code
-        '500'
-      end
-    end
-
-    attr_reader :response, :params
-
-    def initialize(response)
-      @response = response
+    def initialize(http_code, body)
+      @http_code = http_code
       @params = begin
-                  JSON.parse(response.body)
+                  JSON.parse(body)
                 rescue JSON::ParserError
                   {}
                 end
@@ -67,10 +37,6 @@ module Beer
 
     def error_message
       params['error_message'].presence
-    end
-
-    def http_code
-      response.status.to_s
     end
   end
 end

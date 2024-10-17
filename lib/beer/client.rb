@@ -65,10 +65,17 @@ module Beer
 
     def request
       begin
-        Response.new(yield)
-      rescue StandardError => e
-        logger.error("Error: #{e.message}\nTrace:\n#{e.backtrace.join("\n")}")
-        Response::Error.new(e)
+        response = yield
+        Response.new(response.status.to_s, response.body)
+      rescue StandardError, Faraday::ClientError => e
+        logger.error("[Beer::Client] Connection error: [#{e.class}] #{e.message}\n#{e.backtrace.join("\n")}")
+
+        Response.new('500', {
+          "code" => 'F.1000',
+          "friendly_message" => 'We are sorry, but something went wrong.',
+          "message" => 'Unknown error: Contact the payment service provider for details.',
+          "error_message" => "Failed to complete Beer Client request. Error message: #{e.message}"
+        }.to_json)
       end
     end
 
