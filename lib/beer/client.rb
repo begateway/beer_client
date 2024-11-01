@@ -10,7 +10,7 @@ module Beer
     DEFAULT_OPEN_TIMEOUT = 5
     DEFAULT_TIMEOUT = 25
 
-    attr_reader :secret_key, :beer_url, :opts, :headers, :api_version, :logger
+    attr_reader :secret_key, :beer_url, :opts, :headers, :api_version, :logger, :open_timeout, :timeout
     cattr_accessor :proxy
 
     def initialize(params)
@@ -20,6 +20,8 @@ module Beer
       @headers = (@opts[:headers] || {}).except('X-Api-Version') # BeER only supports API V1. For multi supporting: @headers = @opts[:headers] || {}
       @api_version = DEFAULT_API_VERSION # BeER only supports API V1. For multi supporting: @api_version = @headers.dig( 'X-Api-Version').presence || DEFAULT_API_VERSION
       @logger = params[:logger] || Logger.new(STDOUT)
+      @open_timeout = params[:open_timeout] || DEFAULT_OPEN_TIMEOUT
+      @timeout = params[:timeout] || DEFAULT_TIMEOUT
     end
 
     # /sources :index
@@ -81,12 +83,12 @@ module Beer
 
     def connection
       @connection ||= Faraday::Connection.new(opts) do |c|
-        c.options[:open_timeout] ||= DEFAULT_OPEN_TIMEOUT
-        c.options[:timeout] ||= DEFAULT_TIMEOUT
+        c.options[:open_timeout] ||= open_timeout
+        c.options[:timeout] ||= timeout
         c.options[:proxy] = proxy if proxy
         c.request :json
 
-        c.headers = {'Content-Type' => 'application/json'}.update(headers.to_h)
+        c.headers = { 'Content-Type' => 'application/json' }.update(headers.to_h)
 
         c.basic_auth(BASIC_AUTH_LOGIN, secret_key)
         c.adapter Faraday.default_adapter
