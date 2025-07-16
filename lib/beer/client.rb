@@ -10,7 +10,7 @@ module Beer
     DEFAULT_OPEN_TIMEOUT = 5
     DEFAULT_TIMEOUT = 25
 
-    attr_reader :secret_key, :beer_url, :opts, :headers, :api_version, :logger, :open_timeout, :timeout
+    attr_reader :secret_key, :beer_url, :opts, :headers, :api_version, :logger, :open_timeout, :timeout, :auth_login
     cattr_accessor :proxy
 
     def initialize(params)
@@ -22,6 +22,7 @@ module Beer
       @logger = params[:logger] || Logger.new(STDOUT)
       @open_timeout = params[:open_timeout] || DEFAULT_OPEN_TIMEOUT
       @timeout = params[:timeout] || DEFAULT_TIMEOUT
+      @auth_login = params.fetch(:auth_login) || BASIC_AUTH_LOGIN
     end
 
     # /sources :index
@@ -57,6 +58,10 @@ module Beer
       post("#{api_path}/exchange/calculator", params)
     end
 
+    def shop_exchange_calculator(params)
+      post("#{api_path}/shop/exchange/calculator", params)
+    end
+
     def exchange_sources_info(params)
       post("#{api_path}/exchange/sources_info", params)
     end
@@ -90,7 +95,7 @@ module Beer
 
         c.headers = { 'Content-Type' => 'application/json' }.update(headers.to_h)
 
-        c.basic_auth(BASIC_AUTH_LOGIN, secret_key)
+        c.basic_auth(auth_login, secret_key)
         c.adapter Faraday.default_adapter
       end
     end
