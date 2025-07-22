@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors = ["Dmitry Melkunas"]
   spec.email = ["dmitry.melkunas@ecomcharge.com"]
 
-  spec.version = "0.1.1"
+  spec.version = "0.1.2"
   spec.date = "2024-09-27"
   spec.summary = "BeER client for communication with other services"
   spec.description = "BeER client for communication with other services"

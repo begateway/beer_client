@@ -22,7 +22,7 @@ module Beer
       @logger = params[:logger] || Logger.new(STDOUT)
       @open_timeout = params[:open_timeout] || DEFAULT_OPEN_TIMEOUT
       @timeout = params[:timeout] || DEFAULT_TIMEOUT
-      @auth_login = params.fetch(:auth_login) || BASIC_AUTH_LOGIN
+      @auth_login = params[:auth_login] || BASIC_AUTH_LOGIN
     end
 
     # /sources :index
