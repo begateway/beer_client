@@ -93,6 +93,8 @@ module Beer
         c.options[:proxy] = proxy if proxy
         c.request :json
 
+        c.response :logger, logger, { headers: true, bodies: true }
+
         c.headers = { 'Content-Type' => 'application/json' }.update(headers.to_h)
 
         c.basic_auth(auth_login, secret_key)
