@@ -4,13 +4,35 @@ require 'logger'
 require 'ostruct'
 
 module Beer
+  class InfoLogger
+    def initialize(logger)
+      @logger = logger
+    end
+
+    def debug(*args, &block)
+      @logger.info(*args, &block)
+    end
+
+    def info(*args, &block)
+      @logger.info(*args, &block)
+    end
+
+    def warn(*args, &block)
+      @logger.warn(*args, &block)
+    end
+
+    def error(*args, &block)
+      @logger.error(*args, &block)
+    end
+  end
+
   class Client
     BASIC_AUTH_LOGIN = 'admin'.freeze
     DEFAULT_API_VERSION = '1'.freeze
     DEFAULT_OPEN_TIMEOUT = 5
     DEFAULT_TIMEOUT = 25
 
-    attr_reader :secret_key, :beer_url, :opts, :headers, :api_version, :logger, :open_timeout, :timeout, :auth_login
+    attr_reader :secret_key, :beer_url, :opts, :headers, :api_version, :open_timeout, :timeout, :auth_login
     cattr_accessor :proxy
 
     def initialize(params)
@@ -19,7 +41,7 @@ module Beer
       @opts = params[:options] || {}
       @headers = (@opts[:headers] || {}).except('X-Api-Version') # BeER only supports API V1. For multi supporting: @headers = @opts[:headers] || {}
       @api_version = DEFAULT_API_VERSION # BeER only supports API V1. For multi supporting: @api_version = @headers.dig( 'X-Api-Version').presence || DEFAULT_API_VERSION
-      @logger = params[:logger] || Logger.new(STDOUT)
+      @logger = params[:logger]
       @open_timeout = params[:open_timeout] || DEFAULT_OPEN_TIMEOUT
       @timeout = params[:timeout] || DEFAULT_TIMEOUT
       @auth_login = params[:auth_login] || BASIC_AUTH_LOGIN
@@ -70,6 +92,11 @@ module Beer
 
     attr_reader :response
 
+    def logger
+      return nil unless @logger
+      InfoLogger.new(@logger)
+    end
+
     def request
       begin
         response = yield
@@ -93,13 +120,15 @@ module Beer
         c.options[:proxy] = proxy if proxy
         c.request :json
 
-        c.response :logger, logger, { headers: true, bodies: true }
+        c.response :logger, logger, { headers: true, bodies: true, log_level: :info } do |l|
+          l.filter(/(Authorization:) .+/, '\1 [FILTERED]')
+        end
 
         c.headers = { 'Content-Type' => 'application/json' }.update(headers.to_h)
 
         c.basic_auth(auth_login, secret_key)
         c.adapter Faraday.default_adapter
-      end
+      end.tap { logger.info("[Beer::Client] Using auth login: #{auth_login}") }
     end
 
     def post(path, data = {})
