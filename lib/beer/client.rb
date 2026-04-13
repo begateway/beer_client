@@ -47,6 +47,8 @@ module Beer
       @auth_login = params[:auth_login] || BASIC_AUTH_LOGIN
     end
 
+    # Routes with ADMIN auth
+
     # /sources :index
     def get_all_source
       get("#{api_path}/sources")
@@ -80,12 +82,28 @@ module Beer
       post("#{api_path}/exchange/calculator", params)
     end
 
+    def exchange_sources_info(params)
+      post("#{api_path}/exchange/sources_info", params)
+    end
+
+    # Routes with SHOP auth
+
     def shop_exchange_calculator(params)
       post("#{api_path}/shop/exchange/calculator", params)
     end
 
-    def exchange_sources_info(params)
-      post("#{api_path}/exchange/sources_info", params)
+    # Routes with PSP auth
+
+    def psp_exchange_rates(params)
+      post("#{api_path}/psp/exchange/rates", params)
+    end
+
+    def psp_exchange_calculator(params)
+      post("#{api_path}/psp/exchange/calculator", params)
+    end
+
+    def psp_exchange_sources_info(params)
+      post("#{api_path}/psp/exchange/sources_info", params)
     end
 
     private

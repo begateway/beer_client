@@ -22,7 +22,8 @@ gem 'beer', git: 'git@github.com:begateway/beer_client.git'
 
 ``` ruby
 client = Beer::Client.new(
-  password: 'YOUR BEER ADMIN KEY',
+  auth_login: 'YOUR BEER ADMIN LOGIN, OR PSP ID, OR SHOP ID',
+  secret_key: 'YOUR BEER ADMIN KEY, OR PSP SECRET KEY, OR SHOP KEY',
   url: 'YOUR BEER HOST NAME'
 )
 ```
@@ -33,9 +34,10 @@ You can set headers for client, for example:
 
 ``` ruby
 client = Beer::Client.new(
-  password: 'YOUR BEER ADMIN KEY',
+  auth_login: 'YOUR BEER ADMIN LOGIN, OR PSP ID, OR SHOP ID',
+  secret_key: 'YOUR BEER ADMIN KEY, OR PSP SECRET KEY, OR SHOP KEY',
   url: 'YOUR BEER HOST NAME',
-  options: {headers: {'X-Request-Id' => '123334455'}}
+  options: { headers: { 'X-Request-Id' => '123334455' } }
 )
 ```
 
