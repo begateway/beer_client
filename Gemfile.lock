@@ -1,10 +1,9 @@
 PATH
   remote: .
   specs:
-    beer (0.1.5)
+    beer (0.1.8)
       activesupport
       faraday
-      faraday_middleware
 
 GEM
   remote: https://rubygems.org/
@@ -47,8 +46,6 @@ GEM
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
     faraday-retry (1.0.3)
-    faraday_middleware (1.2.1)
-      faraday (~> 1.0)
     hashdiff (1.1.1)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
@@ -96,4 +93,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   2.4.13
+   2.4.22
