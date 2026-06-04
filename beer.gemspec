@@ -8,7 +8,6 @@ Gem::Specification.new do |spec|
   spec.authors = ["Dmitry Melkunas"]
   spec.email = ["dmitry.melkunas@ecomcharge.com"]
 
-  spec.version = "0.1.5"
   spec.date = "2024-09-27"
   spec.summary = "BeER client for communication with other services"
   spec.description = "BeER client for communication with other services"
@@ -36,7 +35,6 @@ Gem::Specification.new do |spec|
   if spec.respond_to? :add_runtime_dependency then
     spec.add_runtime_dependency(%q<activesupport>.freeze, [">= 0"])
     spec.add_runtime_dependency(%q<faraday>.freeze, [">= 0"])
-    spec.add_runtime_dependency(%q<faraday_middleware>.freeze, [">= 0"])
     spec.add_development_dependency(%q<bundler>.freeze, ["~> 2.4.13"])
     spec.add_development_dependency(%q<rake>.freeze, ["~> 12.3.3"])
     spec.add_development_dependency(%q<rspec>.freeze, [">= 0"])
@@ -45,7 +43,6 @@ Gem::Specification.new do |spec|
   else
     spec.add_dependency(%q<activesupport>.freeze, [">= 0"])
     spec.add_dependency(%q<faraday>.freeze, [">= 0"])
-    spec.add_dependency(%q<faraday_middleware>.freeze, [">= 0"])
     spec.add_dependency(%q<bundler>.freeze, ["~> 2.4.13"])
     spec.add_dependency(%q<rake>.freeze, ["~> 12.3.3"])
     spec.add_dependency(%q<rspec>.freeze, [">= 0"])
