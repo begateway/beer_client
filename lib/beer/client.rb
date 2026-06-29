@@ -144,7 +144,14 @@ module Beer
 
         c.headers = { 'Content-Type' => 'application/json' }.update(headers.to_h)
 
-        c.basic_auth(auth_login, secret_key)
+        # Faraday 2.0 removed Connection#basic_auth in favour of the :authorization
+        # request middleware. Keep the 1.x path unchanged for existing consumers
+        # (gateway/wls on Ruby 2.6 / Faraday 1.x); use the 2.x API on Faraday >= 2.
+        if Faraday::VERSION.to_i >= 2
+          c.request :authorization, :basic, auth_login, secret_key
+        else
+          c.basic_auth(auth_login, secret_key)
+        end
         c.adapter Faraday.default_adapter
       end.tap { logger.info("[Beer::Client] Using auth login: #{auth_login}") }
     end
